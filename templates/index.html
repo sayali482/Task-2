@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather where you are!</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <aside>
+    <h2>Search for a city:</h2>
+    <form method="POST">
+      <input type="text" name="city" placeholder="Enter city" required>
+      <button type="submit">🔍</button>
+    </form>
+  </aside>
+
+  <main>
+    {% if weather %}
+    <div class="current-weather">
+      <h2>{{ weather.name }}</h2>
+      <p>Temperature: {{ weather.main.temp }} °F</p>
+      <p>Humidity: {{ weather.main.humidity }}%</p>
+      <p>Wind Speed: {{ weather.wind.speed }} MPH</p>
+      <p>Weather: {{ weather.weather[0].description.title() }}</p>
+    </div>
+
+    <div class="forecast">
+      {% for day in forecast %}
+      <div class="forecast-card">
+        <h4>{{ day.date }}</h4>
+        <p>Temp: {{ day.temp }} °F</p>
+        <p>Humidity: {{ day.humidity }}%</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </main>
+</div>
+</body>
+</html>
