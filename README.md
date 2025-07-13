@@ -1,6 +1,3 @@
-
-
-
 ---
 
 🌤️ Weather Forecast Web App
